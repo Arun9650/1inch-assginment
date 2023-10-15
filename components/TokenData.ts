@@ -5,6 +5,8 @@ export const TokenData = async ({chain}: {chain:number | undefined}) =>{
           "Content-Type": "application/json",
           "Authorization":  `Bearer wINrkvzrIFDAHM3b9k9DHcR5r13jJoD4` ,
           "accept": "application/json",
+          "changeOrigin": "true",
+            "Access-Control-Allow-Origin": "*",
         },
       
       });

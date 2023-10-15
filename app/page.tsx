@@ -7,10 +7,7 @@ const Button = dynamic(() => import("@/components/Button"), { ssr: false });
 
 // import Button from "@/components/Button";
 
-export const  TokenList = async () => {
 
- 
-}
 
 
 export default async function Home() {

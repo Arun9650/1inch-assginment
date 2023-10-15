@@ -9,12 +9,14 @@ import { publicProvider } from "wagmi/providers/public";
 
 const { chains, publicClient } = configureChains(
   [mainnet, polygon, optimism, arbitrum, base, zora],
-  [alchemyProvider({ apiKey: process.env.ALCHEMY_ID || "" }), publicProvider()]
+  [alchemyProvider({ apiKey: process.env.ALCHEMY_ID || "" }), publicProvider()],
 );
+
+const projectId= 'b9350b26279a2e1a303dbd833b75a485'
 
 const { connectors } = getDefaultWallets({
   appName: "1INCH SWAP",
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID || "",
+  projectId,
   chains,
 });
 
@@ -25,11 +27,16 @@ const wagmiConfig = createConfig({
 });
 
 
+const demoAppInfo = {
+  appName: "1INCH SWAP",
+};
+
+
 
 export const WagmiProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains}>{children}</RainbowKitProvider>
+      <RainbowKitProvider chains={chains}  appInfo={demoAppInfo}>{children}</RainbowKitProvider>
     </WagmiConfig>
     );
 };

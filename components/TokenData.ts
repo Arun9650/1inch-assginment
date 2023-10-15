@@ -2,15 +2,24 @@ import axios from "axios";
 
 export const TokenData = async ({ chain }: { chain: number | undefined }) => {
   const baseurl = "https://api.1inch.dev/token";
-  const header = {
-    Authorization: "Bearer wINrkvzrIFDAHM3b9k9DHcR5r13jJoD4",
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*", // Required for CORS support to work
-    "Access-Control-Allow-Credentials": true, // Required for cookies, authorization headers with HTTPS
-    
+  const token = "wINrkvzrIFDAHM3b9k9DHcR5r13jJoD4"; // Replace with your API token
+
+  // Set the headers with your API token
+  const headers = {
+    Authorization: `Bearer ${token}`,
   };
-  const res = await axios.get(`${baseurl}/v1.2/${chain}`, { headers: header });
-  const data = res.data;
-  console.log(data);
-  return data;
+
+  try {
+    const response = await axios.get(`${baseurl}/v1.2/${chain}`, {
+      headers: headers,
+    });
+
+    const data = response.data;
+    console.log(data);
+    return data;
+  } catch (error) {
+    // Handle any errors that occur during the request
+    console.error("Error:", error);
+    throw error; // Optionally re-throw the error for the calling code to handle
+  }
 };
